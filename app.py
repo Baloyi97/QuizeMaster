@@ -4,7 +4,8 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from flask_mail import Mail, Message
 import os
 from flask_bcrypt import Bcrypt
-from datetime import timedelta
+from datetime import datetime, timedelta
+import secrets
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,22 +14,18 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')  # Fetch from .env
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')  # Fetch from .env
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')  # Ensure this matches the authenticated email
+
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'index'
 login_manager.remember_cookie_duration = timedelta(days=7)  # Optional: set duration for remember me
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # or your mail server
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('vernonbaloyi41@gmail.com')  # replace with your email
-app.config['MAIL_PASSWORD'] = os.environ.get('wgyd qera uolp ssqt')  # replace with your email password
-app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('vernonbaloyi41@gmail.com')  # ensure this matches the authenticated email
-
-
-db = SQLAlchemy(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'index'
 mail = Mail(app)
 
 class User(db.Model, UserMixin):
@@ -36,9 +33,18 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
+    reset_token = db.Column(db.String(100), unique=True, nullable=True)
+    reset_token_expires = db.Column(db.DateTime, nullable=True)
 
     def __repr__(self):
         return f"User('{self.email}', '{self.username}')"
+
+    def generate_reset_token(self):
+        self.reset_token = secrets.token_urlsafe(32)
+        self.reset_token_expires = datetime.utcnow() + timedelta(hours=1)
+
+    def check_reset_token_valid(self):
+        return self.reset_token_expires > datetime.utcnow()
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -92,18 +98,43 @@ def forgot_password():
         email = request.form['email']
         user = User.query.filter_by(email=email).first()
         if user:
-            msg = Message('Your QuizMaster Password',
-                          sender='noreply@demo.com',
-                          recipients=[email])
-            msg.body = f'Your password is: {user.password}'
-            mail.send(msg)
-            flash('An email with your password has been sent!', 'success')
+            user.generate_reset_token()
+            db.session.commit()
+            send_password_reset_email(user)
+            flash('An email with instructions to reset your password has been sent.', 'success')
             return redirect(url_for('index'))
         else:
-            flash('Email address not found', 'danger')
+            flash('Email address not found.', 'danger')
     return render_template('forgot_password.html')
 
+@app.route("/reset_password/<token>", methods=['GET', 'POST'])
+def reset_password(token):
+    user = User.query.filter_by(reset_token=token).first()
+    if not user or not user.check_reset_token_valid():
+        flash('Invalid or expired token. Please try again.', 'danger')
+        return redirect(url_for('forgot_password'))
 
+    if request.method == 'POST':
+        new_password = request.form['password']
+        hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+        user.password = hashed_password
+        user.reset_token = None
+        user.reset_token_expires = None
+        db.session.commit()
+        flash('Your password has been reset successfully!', 'success')
+        return redirect(url_for('index'))
+
+    return render_template('reset_password.html', token=token)
+
+def send_password_reset_email(user):
+    token = user.reset_token
+    msg = Message('Password Reset Request', sender=os.getenv('MAIL_USERNAME'), recipients=[user.email])
+    msg.body = f'''To reset your password, visit the following link:
+{url_for('reset_password', token=token, _external=True)}
+
+If you did not make this request, simply ignore this email.
+'''
+    mail.send(msg)
 
 if __name__ == '__main__':
     app.run(debug=True)
