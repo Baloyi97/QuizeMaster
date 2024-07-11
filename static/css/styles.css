@@ -17,17 +17,23 @@ body {
     background-position: center;
 }
 
+/*.forgot-password-page {
+    background: #f8f9fa;
+}*/
+
 header {
     
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    height: 55px;
     padding: 20px 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 99;
+    background-color: #007bff; /* Blue background for the header */
 }
 
 .logo {
@@ -87,7 +93,7 @@ header {
     position: relative;
     width: 400px;
     height: 440px;
-    background: transparent;
+    background: white;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
@@ -155,7 +161,7 @@ header {
 
 .form-box h2 {
     font-size: 2em;
-    color: #162938;
+    color: #007bff;
     text-align: center;
 }
 
@@ -200,7 +206,7 @@ header {
     position: absolute;
     right: 8px;
     font-size: 1.2em;
-    color: #162938;
+    color: #007bff;
     line-height: 57px;
 }
 
@@ -230,7 +236,7 @@ header {
 .btn {
     width: 100%;
     height: 45px;
-    background: #162938;
+    background: #007bff;
     border: none;
     outline: none;
     border-radius: 6px;
@@ -238,6 +244,7 @@ header {
     font-size: 1em;
     color: #fff;
     font-weight: 500;
+    transition: background 0.3s;
 }
 
 .login-register {
@@ -298,7 +305,7 @@ header {
 }
 
 .close-btn:hover {
-    background-color: #0056b3;
+    background-color: #fff;
 }
 
 /* Form visibility */
@@ -319,4 +326,61 @@ footer {
     bottom: 0;
     width: 100%;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles specific to the forgot-password page */
+.forgot-password-page {
+    background: #f8f9fa; /* Light gray background for a clean look */
+}
+
+.forgot-password-page .wrapper {
+    background: white; /* White background for the form container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border: none; /* Remove border */
+    padding: 20px; /* Add padding */
+}
+
+.forgot-password-page .form-box {
+    width: 100%;
+    padding: 20px;
+}
+
+.forgot-password-page .form-box h2 {
+    color: #007bff; /* Bootstrap primary blue for the header */
+}
+
+.forgot-password-page .input-box {
+    margin: 20px 0; /* Adjust margin */
+}
+
+.forgot-password-page .input-box input {
+    border-bottom: 2px solid #007bff; /* Blue border for inputs */
+}
+
+.forgot-password-page .input-box .icon {
+    color: #007bff; /* Blue icon color */
+}
+
+.forgot-password-page .btn {
+    background: #007bff; /* Blue background for the button */
+    transition: background 0.3s; /* Smooth transition */
+}
+
+.forgot-password-page .btn:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+
+.forgot-password-page header {
+    background-color: #007bff; /* Blue background for the header */
+    padding: 10px 20px;
+}
+
+.forgot-password-page header .logo {
+    color: white; /* White logo text */
+}
+
+/* Ensure footer does not overlap with the form */
+.forgot-password-page footer {
+    position: relative;
+    margin-top: 20px;
 }
