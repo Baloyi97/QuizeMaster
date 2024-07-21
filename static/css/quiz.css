@@ -1,0 +1,152 @@
+/* Basic Reset and Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: #f4f7f6;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+#timer {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Ensure radio buttons and text are aligned in a row */
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-check-input {
+    margin-right: 10px; /* Space between the radio button and the text */
+    cursor: pointer;
+    accent-color: #007bff; /* Set color for the radio button */
+    flex-shrink: 0; /* Prevent the radio button from shrinking */
+    /* Adjust vertical position of the radio button */
+    transform: translateY(-3px); /* Move radio button up by 3px */
+}
+
+.form-check-label {
+    font-size: 1em;
+    color: #555;
+    cursor: pointer;
+    display: inline-flex; /* Ensures alignment with the radio button */
+    align-items: center; /* Center align the text with the radio button */
+    line-height: 1.5; /* Ensures the text is vertically centered */
+}
+
+/* Change the color of the label when the radio button is checked */
+.form-check-input:checked + .form-check-label {
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#results {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #007bff;
+    margin-top: 20px;
+}
+
+/* Card Styling for Results */
+.card {
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body h2 {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.card-body p {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    #timer {
+        font-size: 1.2em;
+    }
+
+    .btn-primary {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+}

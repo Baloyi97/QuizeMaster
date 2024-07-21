@@ -24,4 +24,6 @@ WTForms==3.0.1
 zipp==3.8.0
 Flask-Mail
 python-dotenv
-
+PyMuPDF
+nltk
+Flask-Migrate

@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Styles specific to the forgot-password page */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f8f9fa; /* Light gray background for a clean look */
+}
+
+header {
+    width: 100%;
+    background-color: #007bff; /* Blue background for the header */
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header .logo {
+    color: white; /* White logo text */
+}
+
+/* Add this to your existing CSS */
+
+/* Add this to your existing CSS */
+
+/* Add this to your existing CSS */
+
+.forgot-password-page {
+    position: relative; 
+    background: #f8f9fa; 
+}
+
+header {
+    position: relative;
+}
+
+.back-to-login {
+    position: absolute;
+    top: 60px; /* Adjust this value to position the icon just below the header */
+    left: 20px; /* Position the icon from the left edge */
+    color: #007bff; /* Color for the icon */
+    font-size: 32px; /* Adjust size to make it bigger */
+    text-decoration: none; /* Remove underline */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+    display: flex;
+    align-items: center;
+}
+
+.back-to-login ion-icon {
+    vertical-align: middle; /* Align icon vertically */
+}
+
+
+
+.forgot-password-page {
+    position: relative; /* Ensure the position is relative for child absolute positioning */
+    background: #f8f9fa; /* Light gray background for a clean look */
+}
+
+/* Other existing CSS rules */
+
+
+.forgot-password-page {
+    position: relative; /* Ensure the position is relative for child absolute positioning */
+    background: #f8f9fa; /* Light gray background for a clean look */
+}
+
+/* Other existing CSS rules */
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forgot-password-page .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border: none; /* Remove border */
+    padding: 20px; /* Add padding */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.forgot-password-page .form-box {
+    width: 100%;
+    padding: 20px;
+}
+
+.forgot-password-page .form-box h2 {
+    color: #007bff; /* Bootstrap primary blue for the header */
+}
+
+.forgot-password-page .input-box {
+    position: relative;
+    margin: 20px 0; /* Adjust margin */
+}
+
+.forgot-password-page .input-box input {
+    width: 100%;
+    padding: 10px 40px 10px 20px; /* Add padding for icon */
+    border: none;
+    border-bottom: 2px solid #007bff; /* Blue border for inputs */
+    outline: none;
+    font-size: 16px;
+    background: none;
+}
+
+.forgot-password-page .input-box .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #007bff; /* Blue icon color */
+    font-size: 20px;
+}
+
+.forgot-password-page .input-box label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.5s;
+    color: #007bff;
+}
+
+.forgot-password-page .input-box input:focus ~ label,
+.forgot-password-page .input-box input:valid ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+}
+
+.forgot-password-page .btn {
+    width: 100%;
+    background: #007bff; /* Blue background for the button */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    transition: background 0.3s; /* Smooth transition */
+}
+
+.forgot-password-page .btn:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+
+footer {
+    width: 100%;
+    background-color: #f1f1f1; /* Light gray background for the footer */
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Add this to your CSS file */
+.flash-messages {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.flash-messages li {
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.flash-messages .error {
+    background-color: #f44336; /* Red for error */
+}
+
+.flash-messages .success {
+    background-color: #4caf50; /* Green for success */
+}

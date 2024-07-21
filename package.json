@@ -1,0 +1,30 @@
+{
+  "name": "quizemaster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:flask": "flask run",
+    "start:express": "node server.js",
+    "start:all": "concurrently \"npm run start:flask\" \"npm run start:express\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Baloyi97/QuizeMaster.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Baloyi97/QuizeMaster/issues"
+  },
+  "homepage": "https://github.com/Baloyi97/QuizeMaster#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-reload": "^1.2.0",
+    "nodemon": "^3.1.4"
+  }
+}

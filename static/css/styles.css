@@ -1,3 +1,4 @@
+/* Basic and Responsive Styles */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
@@ -17,12 +18,7 @@ body {
     background-position: center;
 }
 
-/*.forgot-password-page {
-    background: #f8f9fa;
-}*/
-
 header {
-    
     position: fixed;
     top: 0;
     left: 0;
@@ -33,7 +29,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 99;
-    background-color: #007bff; /* Blue background for the header */
+    background-color: #007bff;
 }
 
 .logo {
@@ -92,7 +88,7 @@ header {
 .wrapper {
     position: relative;
     width: 400px;
-    height: 440px;
+    height: auto;
     background: white;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
@@ -103,43 +99,29 @@ header {
     align-items: center;
     overflow: hidden;
     transform: scale(0);
-    transition: transfor .5s ease, height .2s ease;
+    transition: transform .5s ease;
 }
 
 .wrapper.active-popup {
     transform: scale(1);
 }
 
-.wrapper.active {
-    height: 520px;
-
-}
-
-.wrapper form-box {
+.wrapper .form-box {
     width: 100%;
     padding: 40px;
+    display: none;
 }
 
 .wrapper .form-box.login {
-    transition: transform .18s ease;
-    transform: translateX(0)
+    display: block;
 }
 
 .wrapper.active .form-box.login {
-    transition: none;
-    transform: translateX(-400px);
-
-}
-
-.wrapper .form-box.register {
-    position: absolute;
-    transition: none;
-    transform: translateX(400px);
+    display: none;
 }
 
 .wrapper.active .form-box.register {
-    transition: transform .18s ease;
-    transform: translateX(0)
+    display: block;
 }
 
 .wrapper .icon-close {
@@ -177,7 +159,7 @@ header {
     position: absolute;
     top: 50%;
     left: 5px;
-    transform: traslateY(-50%);
+    transform: translateY(-50%);
     font-size: 1em;
     color: #162938;
     font-weight: 500;
@@ -265,9 +247,6 @@ header {
     text-decoration: underline;
 }
 
-
-
-
 /* Popup styles */
 .popup {
     display: none;
@@ -306,15 +285,7 @@ header {
 
 .close-btn:hover {
     background-color: #fff;
-}
-
-/* Form visibility */
-.form-box {
-    display: none;
-}
-
-.form-box.login {
-    display: block;
+    color: #007bff;
 }
 
 /* Footer styles */
@@ -328,59 +299,128 @@ footer {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Styles specific to the forgot-password page */
-.forgot-password-page {
-    background: #f8f9fa; /* Light gray background for a clean look */
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 20px;
+    }
+
+    .navigation a {
+        font-size: 1em;
+        margin-left: 20px;
+    }
+
+    .navigation .Login-popup {
+        width: 100px;
+        height: 40px;
+        font-size: 0.9em;
+        margin-left: 20px;
+    }
+
+    .wrapper {
+        width: 300px;
+        height: auto;
+    }
+
+    .wrapper.active {
+        height: auto;
+    }
+
+    .form-box {
+        padding: 20px;
+    }
+
+    .form-box h2 {
+        font-size: 1.5em;
+    }
+
+    .input-box {
+        height: 40px;
+        margin: 20px 0;
+    }
+
+    .input-box label, .input-box input {
+        font-size: 0.9em;
+    }
+
+    .input-box .icon {
+        font-size: 1em;
+        line-height: 45px;
+    }
+
+    .btn {
+        height: 40px;
+        font-size: 0.9em;
+    }
+
+    .login-register {
+        font-size: 0.8em;
+        margin: 20px 0 10px;
+    }
 }
 
-.forgot-password-page .wrapper {
-    background: white; /* White background for the form container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    border: none; /* Remove border */
-    padding: 20px; /* Add padding */
-}
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+        height: auto;
+        flex-direction: column;
+    }
 
-.forgot-password-page .form-box {
+    .navigation {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navigation a, .navigation .Login-popup {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .logo {
+		font-size: 1.5em;
+	}
+
+.wrapper {
     width: 100%;
-    padding: 20px;
+    height: auto;
+    margin: 20px;
+    border: none;
+    box-shadow: none;
 }
 
-.forgot-password-page .form-box h2 {
-    color: #007bff; /* Bootstrap primary blue for the header */
+.wrapper.active {
+    height: auto;
 }
 
-.forgot-password-page .input-box {
-    margin: 20px 0; /* Adjust margin */
+.form-box {
+    padding: 10px;
 }
 
-.forgot-password-page .input-box input {
-    border-bottom: 2px solid #007bff; /* Blue border for inputs */
+.form-box h2 {
+    font-size: 1.2em;
 }
 
-.forgot-password-page .input-box .icon {
-    color: #007bff; /* Blue icon color */
+.input-box {
+    height: 35px;
+    margin: 15px 0;
 }
 
-.forgot-password-page .btn {
-    background: #007bff; /* Blue background for the button */
-    transition: background 0.3s; /* Smooth transition */
+.input-box label, .input-box input {
+    font-size: 0.8em;
 }
 
-.forgot-password-page .btn:hover {
-    background: #0056b3; /* Darker blue on hover */
+.input-box .icon {
+    font-size: 0.9em;
+    line-height: 40px;
 }
 
-.forgot-password-page header {
-    background-color: #007bff; /* Blue background for the header */
-    padding: 10px 20px;
+.btn {
+    height: 35px;
+    font-size: 0.8em;
 }
 
-.forgot-password-page header .logo {
-    color: white; /* White logo text */
-}
-
-/* Ensure footer does not overlap with the form */
-.forgot-password-page footer {
-    position: relative;
-    margin-top: 20px;
+.login-register {
+    font-size: 0.7em;
+    margin: 15px 0 10px;
 }

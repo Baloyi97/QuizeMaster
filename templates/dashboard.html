@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .course-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .course-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .course-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .course-subtitle {
+            font-size: 18px;
+            color: #666;
+        }
+        .launch-course-btn {
+            margin-top: 20px;
+        }
+        .profile-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .profile-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .profile-label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Container -->
+        <div class="profile-container">
+            <a href="{{ url_for('profile') }}" class="profile-icon">
+                <ion-icon name="person-circle"></ion-icon>
+            </a>
+            <span class="profile-label">{{ username }}</span>
+        </div>
+
+        <h1 class="my-4">Dashboard</h1>
+
+        <div class="course-box">
+            <div class="course-icon">
+                <ion-icon name="school"></ion-icon>
+            </div>
+            <div class="course-title">Introduction to Programming</div>
+            <div class="course-subtitle">Basic programming in Java</div>
+            <a href="{{ url_for('course') }}" class="btn btn-primary launch-course-btn">Launch Course</a>
+        </div>
+
+        <h2 class="my-4">Available Quizzes</h2>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="{{ url_for('quiz', chapter=1) }}">Chapter 1</a>
+            </li>
+            <li class="list-group-item">
+                <a href="{{ url_for('quiz', chapter=2) }}">Chapter 2</a>
+            </li>
+			 <li class="list-group-item">
+                <a href="{{ url_for('quiz', chapter=3) }}">Chapter 3</a>
+            </li>
+			 <li class="list-group-item">
+                <a href="{{ url_for('quiz', chapter=2) }}">Chapter 4</a>
+            </li>
+			 <li class="list-group-item">
+                <a href="{{ url_for('quiz', chapter=2) }}">Chapter 5</a>
+            </li>
+        </ul>
+        
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary mt-4">Logout</a>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

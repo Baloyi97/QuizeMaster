@@ -1,0 +1,28 @@
+#results {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #007bff;
+    margin-top: 20px;
+}
+
+.card {
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body h2 {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.card-body p {
+    font-size: 1.2em;
+    margin: 20px 0;
+}

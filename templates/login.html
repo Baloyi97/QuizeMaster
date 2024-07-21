@@ -11,14 +11,12 @@
 <body>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <div id="popup" class="popup">
+            <div id="popup" class="popup" 
+                 data-message-type="{{ messages[0][0] }}" 
+                 data-message-text="{{ messages[0][1] }}">
                 <div class="popup-content">
-                    {% for category, message in messages %}
-                        {% if category == 'danger' %}
-                            <p>{{ message }}</p>
-                            <button class="close-btn" onclick="closePopup()">OK</button>
-                        {% endif %}
-                    {% endfor %}
+                    <p></p>
+                    <button class="close-btn" onclick="closePopup()">OK</button>
                 </div>
             </div>
         {% endif %}
@@ -27,7 +25,6 @@
     <header>
         <h2 class="logo">Logo</h2>
         <nav class="navigation">
-           
             <button class="Login-popup" onclick="openLoginForm()">Login</button>
         </nav> 
     </header> 
@@ -45,8 +42,10 @@
                     <label>Email</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" name="password" required>
+                    <span class="icon">
+                        <ion-icon name="lock-closed" id="togglePasswordIcon" class="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" name="password" id="loginPassword" required>
                     <label>Password</label>
                 </div>
                 <div class="remember-forgot">
@@ -75,8 +74,10 @@
                     <label>Email</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" name="password" required>
+                    <span class="icon">
+                        <ion-icon name="lock-closed" id="toggleRegisterPasswordIcon" class="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" name="password" id="registerPassword" required>
                     <label>Password</label>
                 </div>
                 <div class="remember-forgot">
@@ -93,7 +94,7 @@
         <p>&copy; 2024 QuizeMaster. All rights reserved.</p>
     </footer>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

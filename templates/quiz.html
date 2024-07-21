@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/quiz.css') }}">
+	 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+<body onload="startTimer()">
+    <div class="container">
+        <h1>Chapter {{ chapter }} Quiz</h1>
+        <div id="timer" class="alert alert-info text-center"></div>
+        <form id="quizForm" method="post" action="{{ url_for('quiz', chapter=chapter) }}">
+            {% for question_idx, question in enumerate(questions) %}
+                <div class="form-group">
+                    <label><strong>Question {{ question_idx + 1 }}:</strong> {{ question.question }}</label>
+                    {% for choice_idx, choice in enumerate(question.choices) %}
+                        <div class="form-check">
+                            <input type="radio" name="question{{ question_idx }}" value="{{ choice_idx + 1 }}" id="q{{ question_idx }}_c{{ choice_idx }}" class="form-check-input" required>
+                            <label class="form-check-label" for="q{{ question_idx }}_c{{ choice_idx }}">
+                                {{ 'ABCD'[choice_idx] }}. {{ choice }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" id="submitQuiz" class="btn btn-primary">Submit</button>
+        </form>
+        <div id="results" class="mt-4"></div>
+    </div>
+	
+    <script src="{{ url_for('static', filename='js/quiz.js') }}" defer></script>
+	<script src="{{ url_for('static', filename='js/results.js') }}" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        startTimer();
+    });
+    </script>
+</body>
+</html>
