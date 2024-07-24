@@ -19,7 +19,7 @@ from contextlib import closing
 
 load_dotenv()
 
-app = Flask(__name__,  template_folder='templates')
+app = Flask(name,  template_folder='templates')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -29,6 +29,7 @@ app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS').lower() in ['true', '1', 
 app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
+app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=7)
 
 db = SQLAlchemy(app)
 CORS(app)
@@ -57,7 +58,7 @@ class User(db.Model, UserMixin):
     reset_token_expires = db.Column(db.DateTime, nullable=True)
     quiz_results = db.relationship('QuizResult', backref='user', lazy=True)
 
-    def __repr__(self):
+    def repr(self):
         return f"User('{self.email}', '{self.username}')"
 
     def generate_reset_token(self):
@@ -637,6 +638,5 @@ If you did not make this request, simply ignore this email and no changes will b
     mail.send(msg)
 
  
-if __name__ == "__main__":
+if name == "main":
      app.run(debug=True)
- 
