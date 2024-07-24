@@ -103,4 +103,44 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeBtn) {
         closeBtn.addEventListener('click', window.closePopup);
     }
+
+    // Validate registration form
+    function validateRegisterForm(event) {
+        const termsCheckbox = document.getElementById('terms');
+        if (!termsCheckbox.checked) {
+            displayPopup('error', 'You must agree to the terms and conditions to register.');
+            event.preventDefault(); // Prevent form submission
+            return false;
+        }
+        return true;
+    }
+
+    function displayPopup(type, message) {
+        const popup = document.createElement('div');
+        popup.id = 'popup';
+        popup.className = 'popup';
+        popup.dataset.messageType = type;
+        popup.dataset.messageText = message;
+
+        const popupContent = document.createElement('div');
+        popupContent.className = 'popup-content';
+        const messagePara = document.createElement('p');
+        messagePara.innerText = message;
+        const closeButton = document.createElement('button');
+        closeButton.className = 'close-btn';
+        closeButton.innerText = 'OK';
+        closeButton.onclick = window.closePopup;
+
+        popupContent.appendChild(messagePara);
+        popupContent.appendChild(closeButton);
+        popup.appendChild(popupContent);
+        document.body.appendChild(popup);
+
+        popup.style.display = 'flex';
+    }
+
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', validateRegisterForm);
+    }
 });
